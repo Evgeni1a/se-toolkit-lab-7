@@ -58,10 +58,11 @@ Title: `[Task] Add Front-end`
 Complete these steps:
 
 <!-- no toc -->
-1. [Navigate to the front-end project directory](#131-navigate-to-the-front-end-project-directory)
-2. [Configure the environment for frontend](#132-configure-the-environment-for-frontend)
-3. [Start the dev server](#133-start-the-dev-server)
-4. [Edit a source file and observe hot reload](#134-edit-a-source-file-and-observe-hot-reload)
+1. [Navigate to the front-end project directory](#131-navigate-to-the-front-end-project-directory).
+2. [Configure the environment for frontend](#132-configure-the-environment-for-frontend).
+3. [Start the dev server](#133-start-the-dev-server).
+4. [Start the dev server](#134-inspect-the-local-storage).
+5. [Edit a source file and observe hot reload](#135-edit-a-source-file-and-observe-hot-reload).
 
 #### 1.3.1. Navigate to the front-end project directory
 
