@@ -3,28 +3,28 @@
 <h2>Table of contents</h2>
 
 - [1. File locations](#1-file-locations)
-- [2. General rules](#2-general-rules)
-  - [2.1. Language](#21-language)
-  - [2.2. Output format](#22-output-format)
-  - [2.3. Speaker references](#23-speaker-references)
-  - [2.4. No personal information](#24-no-personal-information)
-  - [2.5. Attendance](#25-attendance)
-  - [2.6. Skip noise](#26-skip-noise)
-  - [2.7. Unclear content](#27-unclear-content)
-  - [2.8. Do not infer decisions](#28-do-not-infer-decisions)
-  - [2.9. Superseded decisions](#29-superseded-decisions)
-  - [2.10. Cross-references](#210-cross-references)
-  - [2.11. Items as subsections](#211-items-as-subsections)
-  - [2.12. Clean headings](#212-clean-headings)
-  - [2.13. Anchor links](#213-anchor-links)
-  - [2.14. Timestamps](#214-timestamps)
-  - [2.15. Direct quotes vs paraphrasing](#215-direct-quotes-vs-paraphrasing)
-  - [2.16. Depth calibration](#216-depth-calibration)
-  - [2.17. Off-topic digressions](#217-off-topic-digressions)
-  - [2.18. Recurring meetings](#218-recurring-meetings)
-- [3. Instructions](#3-instructions)
-  - [3.1. Line-by-line pass](#31-line-by-line-pass)
-  - [3.2. Coverage check](#32-coverage-check)
+- [2. Instructions](#2-instructions)
+  - [2.1. Line-by-line pass](#21-line-by-line-pass)
+  - [2.2. Coverage check](#22-coverage-check)
+- [3. General rules](#3-general-rules)
+  - [3.1. Language](#31-language)
+  - [3.2. Output format](#32-output-format)
+  - [3.3. Speaker references](#33-speaker-references)
+  - [3.4. No personal information](#34-no-personal-information)
+  - [3.5. Attendance](#35-attendance)
+  - [3.6. Skip noise](#36-skip-noise)
+  - [3.7. Unclear content](#37-unclear-content)
+  - [3.8. Do not infer decisions](#38-do-not-infer-decisions)
+  - [3.9. Superseded decisions](#39-superseded-decisions)
+  - [3.10. Cross-references](#310-cross-references)
+  - [3.11. Items as subsections](#311-items-as-subsections)
+  - [3.12. Clean headings](#312-clean-headings)
+  - [3.13. Anchor links](#313-anchor-links)
+  - [3.14. Timestamps](#314-timestamps)
+  - [3.15. Direct quotes vs paraphrasing](#315-direct-quotes-vs-paraphrasing)
+  - [3.16. Depth calibration](#316-depth-calibration)
+  - [3.17. Off-topic digressions](#317-off-topic-digressions)
+  - [3.18. Recurring meetings](#318-recurring-meetings)
 - [4. Sections](#4-sections)
   - [4.1. Table of contents](#41-table-of-contents)
   - [4.2. Metadata](#42-metadata)
@@ -47,114 +47,15 @@
 
 Substitute actual week and meeting numbers for N and M.
 
-## 2. General rules
-
-### 2.1. Language
-
-Always write the report in English.
-Use a neutral, professional tone.
-Translate quotes and terminology as needed.
-For domain-specific terms, keep the original alongside the English translation in parentheses (e.g., "sprint review (ревью спринта)") to avoid ambiguity.
-
-### 2.2. Output format
-
-Write the report in Markdown using the heading structure defined below.
-Write each sentence on its own line so that individual lines can be referenced by line number.
-
-### 2.3. Speaker references
-
-Use speaker labels from the transcript (e.g., Speaker A, Speaker B).
-If the transcript uses real names instead of labels, replace them with Speaker A/B/C in order of first appearance.
-
-### 2.4. No personal information
-
-Never include real names, email addresses, phone numbers, physical addresses, social media handles, company names, project code names, client names, or any other personally identifiable information (PII) in the report.
-Redact or replace all such references with generic labels (e.g., "Speaker A," "the client," "the external tool," "Company X").
-If a speaker mentions a specific person outside the meeting, refer to them by role (e.g., "the team lead," "the vendor contact").
-
-### 2.5. Attendance
-
-Note if any speaker joined late, left early, or was silent throughout the meeting.
-
-### 2.6. Skip noise
-
-Ignore connection issues, screen sharing problems, audio glitches, crosstalk, filler words, and other non-substantive artifacts.
-Focus only on meaningful content.
-
-### 2.7. Unclear content
-
-If something in the transcript is inaudible or the meaning is ambiguous, flag it with [unclear] rather than guessing.
-
-### 2.8. Do not infer decisions
-
-Only record decisions that were explicitly stated or clearly agreed upon.
-Do not infer consensus from silence.
-Proposals, hypotheticals, and "what if" suggestions that were not concluded belong in [Open questions](#48-open-questions), not [Decisions](#47-decisions).
-
-### 2.9. Superseded decisions
-
-If a later discussion in the same meeting overrides an earlier agreement, only include the final version in Decisions.
-Note the evolution briefly (e.g., "Initially agreed on X, later revised to Y because...").
-
-### 2.10. Cross-references
-
-When a decision leads to an action point, or an open question relates to a decision, reference it using an anchor link (see [Anchor links](#213-anchor-links)).
-This applies across all sections.
-
-### 2.11. Items as subsections
-
-Write each distinct item within a section — decisions, open questions, action points, status update items, glossary terms, Q&A pairs, and discussions — as a Markdown subsection with a heading rather than a bullet list entry or blockquote.
-Write the content beneath the heading as prose paragraphs.
-This makes each item individually linkable via a Markdown anchor.
-Never use bold text to label items within a section.
-Each heading must use the format `### S.N. Label N: Title` — where `S.N.` is the two-level section number (e.g., `5.2.`), `Label` is the section label (`Decision`, `Open question`, `Action point`, `Key date`, `Deadline`, `Question and answer`, or `Discussion`), and `N` is the item number within that section (omitted for `Decision`, `Key date`, `Deadline`, `Question and answer`, and `Discussion`).
-
-### 2.12. Clean headings
-
-Headings must contain only the item title — no dates, consensus levels, priorities, severity tags, speaker labels, timestamps, or any other metadata.
-Metadata in headings breaks automatic table-of-contents generation and anchor links.
-Place all contextual metadata — speaker attribution, timestamp ranges, owners, priority, consensus level, and similar details — at the beginning of the first paragraph beneath the heading, highlighted with **bold**.
-Never append metadata to the heading or place it on a separate line before the paragraph.
-
-### 2.13. Anchor links
-
-When cross-referencing a specific item in the report, link to its subsection anchor rather than using plain text (e.g., `[Decision: Use PostgreSQL for the primary data store](#51-decision-use-postgresql-for-the-primary-data-store)` instead of "See Decision: Use PostgreSQL").
-The anchor is derived from the full heading by lowercasing, removing punctuation, and replacing spaces with hyphens — so `### 5.1. Decision: Use PostgreSQL` becomes `#51-decision-use-postgresql`.
-
-### 2.14. Timestamps
-
-If the transcript includes timestamps, reference them at key moments so readers can locate the corresponding point in a recording.
-Always wrap timestamps in square brackets — single points as `[14:32]` and ranges as `[01:10:15–01:12:08]`.
-Square brackets are reserved for transcript-navigation timestamps only.
-Deadlines, scheduled dates, and other future times mentioned by speakers should be written as plain text (e.g., "by March 15", "next Monday at 10:00").
-
-### 2.15. Direct quotes vs paraphrasing
-
-Use direct quotes when the speaker's exact wording carries meaning — strong opinions, definitions, commitments, or memorable phrasing.
-Paraphrase for routine discussion.
-
-### 2.16. Depth calibration
-
-Scale the report's depth proportionally to the meeting's length and substance.
-A 15-minute standup should not produce the same volume as a 2-hour planning session.
-
-### 2.17. Off-topic digressions
-
-Off-topic digressions (tools, mentoring, industry news, etc.) should still be captured in the relevant section (usually [Discussions](#411-discussions)).
-
-### 2.18. Recurring meetings
-
-If the transcript references a prior meeting or is clearly part of a series, note that context in the [Executive summary](#43-executive-summary).
-
-## 3. Instructions
+## 2. Instructions
 
 Write a comprehensive meeting report based on the provided transcript.
 
-### 3.1. Line-by-line pass
+### 2.1. Line-by-line pass
 
 Go through the transcript **line by line for substantive content** and make sure every point, detail, example, quote, and discussion is captured in the appropriate section. In the [Decisions](#47-decisions), [Q&A](#410-questions-and-answers), and [Discussions](#411-discussions) sections, do not summarize — expand. Include specific examples, analogies, and arguments that speakers used. If speakers disagreed or evolved their position during the discussion, capture that progression. If speakers outright contradicted each other without resolution, note the disagreement explicitly.
 
-### 3.2. Coverage check
+### 2.2. Coverage check
 
 After completing the report, review the transcript one more time and verify:
 
@@ -164,6 +65,105 @@ After completing the report, review the transcript one more time and verify:
 - Proposals and hypotheticals are in [Open questions](#48-open-questions), not [Decisions](#47-decisions)
 
 If any gaps are found, go back and fill them in. Do not include this checklist in the final report.
+
+## 3. General rules
+
+### 3.1. Language
+
+Always write the report in English.
+Use a neutral, professional tone.
+Translate quotes and terminology as needed.
+For domain-specific terms, keep the original alongside the English translation in parentheses (e.g., "sprint review (ревью спринта)") to avoid ambiguity.
+
+### 3.2. Output format
+
+Write the report in Markdown using the heading structure defined below.
+Write each sentence on its own line so that individual lines can be referenced by line number.
+
+### 3.3. Speaker references
+
+Use speaker labels from the transcript (e.g., Speaker A, Speaker B).
+If the transcript uses real names instead of labels, replace them with Speaker A/B/C in order of first appearance.
+
+### 3.4. No personal information
+
+Never include real names, email addresses, phone numbers, physical addresses, social media handles, company names, project code names, client names, or any other personally identifiable information (PII) in the report.
+Redact or replace all such references with generic labels (e.g., "Speaker A," "the client," "the external tool," "Company X").
+If a speaker mentions a specific person outside the meeting, refer to them by role (e.g., "the team lead," "the vendor contact").
+
+### 3.5. Attendance
+
+Note if any speaker joined late, left early, or was silent throughout the meeting.
+
+### 3.6. Skip noise
+
+Ignore connection issues, screen sharing problems, audio glitches, crosstalk, filler words, and other non-substantive artifacts.
+Focus only on meaningful content.
+
+### 3.7. Unclear content
+
+If something in the transcript is inaudible or the meaning is ambiguous, flag it with [unclear] rather than guessing.
+
+### 3.8. Do not infer decisions
+
+Only record decisions that were explicitly stated or clearly agreed upon.
+Do not infer consensus from silence.
+Proposals, hypotheticals, and "what if" suggestions that were not concluded belong in [Open questions](#48-open-questions), not [Decisions](#47-decisions).
+
+### 3.9. Superseded decisions
+
+If a later discussion in the same meeting overrides an earlier agreement, only include the final version in Decisions.
+Note the evolution briefly (e.g., "Initially agreed on X, later revised to Y because...").
+
+### 3.10. Cross-references
+
+When a decision leads to an action point, or an open question relates to a decision, reference it using an anchor link (see [Anchor links](#313-anchor-links)).
+This applies across all sections.
+
+### 3.11. Items as subsections
+
+Write each distinct item within a section — decisions, open questions, action points, status update items, glossary terms, Q&A pairs, and discussions — as a Markdown subsection with a heading rather than a bullet list entry or blockquote.
+Write the content beneath the heading as prose paragraphs.
+This makes each item individually linkable via a Markdown anchor.
+Never use bold text to label items within a section.
+Each heading must use the format `### S.N. Label N: Title` — where `S.N.` is the two-level section number (e.g., `5.2.`), `Label` is the section label (`Decision`, `Open question`, `Action point`, `Key date`, `Deadline`, `Question and answer`, or `Discussion`), and `N` is the item number within that section (omitted for `Decision`, `Key date`, `Deadline`, `Question and answer`, and `Discussion`).
+
+### 3.12. Clean headings
+
+Headings must contain only the item title — no dates, consensus levels, priorities, severity tags, speaker labels, timestamps, or any other metadata.
+Metadata in headings breaks automatic table-of-contents generation and anchor links.
+Place all contextual metadata — speaker attribution, timestamp ranges, owners, priority, consensus level, and similar details — at the beginning of the first paragraph beneath the heading, highlighted with **bold**.
+Never append metadata to the heading or place it on a separate line before the paragraph.
+
+### 3.13. Anchor links
+
+When cross-referencing a specific item in the report, link to its subsection anchor rather than using plain text (e.g., `[Decision: Use PostgreSQL for the primary data store](#51-decision-use-postgresql-for-the-primary-data-store)` instead of "See Decision: Use PostgreSQL").
+The anchor is derived from the full heading by lowercasing, removing punctuation, and replacing spaces with hyphens — so `### 5.1. Decision: Use PostgreSQL` becomes `#51-decision-use-postgresql`.
+
+### 3.14. Timestamps
+
+If the transcript includes timestamps, reference them at key moments so readers can locate the corresponding point in a recording.
+Always wrap timestamps in square brackets — single points as `[14:32]` and ranges as `[01:10:15–01:12:08]`.
+Square brackets are reserved for transcript-navigation timestamps only.
+Deadlines, scheduled dates, and other future times mentioned by speakers should be written as plain text (e.g., "by March 15", "next Monday at 10:00").
+
+### 3.15. Direct quotes vs paraphrasing
+
+Use direct quotes when the speaker's exact wording carries meaning — strong opinions, definitions, commitments, or memorable phrasing.
+Paraphrase for routine discussion.
+
+### 3.16. Depth calibration
+
+Scale the report's depth proportionally to the meeting's length and substance.
+A 15-minute standup should not produce the same volume as a 2-hour planning session.
+
+### 3.17. Off-topic digressions
+
+Off-topic digressions (tools, mentoring, industry news, etc.) should still be captured in the relevant section (usually [Discussions](#411-discussions)).
+
+### 3.18. Recurring meetings
+
+If the transcript references a prior meeting or is clearly part of a series, note that context in the [Executive summary](#43-executive-summary).
 
 ## 4. Sections
 
