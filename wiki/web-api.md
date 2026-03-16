@@ -10,7 +10,6 @@
   - [`<api-key>` placeholder](#api-key-placeholder)
 - [API types](#api-types)
   - [`HTTP` API](#http-api)
-  - [`REST` API](#rest-api)
 
 ## What is a web API
 
@@ -55,19 +54,15 @@ An API key is a secret value used to [authenticate](./http-auth.md#http-authenti
 
 ## API types
 
-A [web API](#what-is-a-web-api) is built on top of a [protocol](./communication-protocol.md#what-is-a-protocol). The most common protocol for web APIs is [`HTTP`](./http.md#what-is-http). Within `HTTP`-based APIs, conventions vary — a `REST` API applies a specific set of design rules on top of plain `HTTP`.
+A [web API](#what-is-a-web-api) is built on top of a [protocol](./communication-protocol.md#what-is-a-protocol).
 
-Types
+Common API types:
 
 - [`HTTP` API](#http-api)
-- [`REST` API](#rest-api)
+- [`REST` API](./rest-api.md#what-is-a-rest-api)
 
 ### `HTTP` API
 
-An `HTTP` API is a [web API](#what-is-a-web-api) that uses the [`HTTP` protocol](./http.md#what-is-http) to accept requests and return responses. It has no rules about URL structure or how [`HTTP` methods](./http.md#http-request-method) are used — any path and method combination is valid.
+An `HTTP` API is a [web API](#what-is-a-web-api) that uses the [`HTTP` protocol](./http.md#what-is-http) to accept requests and return responses.
 
-A [`REST` API](#rest-api) is a more structured kind of `HTTP` API that adds conventions for organizing resources and using `HTTP` methods consistently.
-
-### `REST` API
-
-See [`REST` API](./rest-api.md#what-is-a-rest-api).
+It has no rules about URL structure or how [`HTTP` methods](./http.md#http-request-method) are used — any path and method combination is valid.
