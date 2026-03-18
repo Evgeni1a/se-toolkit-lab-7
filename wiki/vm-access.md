@@ -20,7 +20,7 @@
   - [Connect to the VM as the user `<user>` (LOCAL)](#connect-to-the-vm-as-the-user-user-local)
 - [Restrict the `SSH` connection](#restrict-the-ssh-connection)
   - [Restrict the `SSH` config for the user `<user>` (LOCAL)](#restrict-the-ssh-config-for-the-user-user-local)
-  - [Restrict the `SSH` config for the user `<user>` (REMOTE)](#restrict-the-ssh-config-for-the-user-user-remote)
+  - [Restrict the `sshd` config for the user `<user>` (REMOTE)](#restrict-the-sshd-config-for-the-user-user-remote)
   - [Restart `sshd` (REMOTE)](#restart-sshd-remote)
   - [Verify that you can't connect to the VM as the user `root` (LOCAL)](#verify-that-you-cant-connect-to-the-vm-as-the-user-root-local)
 - [Troubleshooting](#troubleshooting)
@@ -480,7 +480,7 @@ Complete these steps:
 
 <!-- no toc -->
 1. [Restrict the `SSH` config for the user `<user>` (LOCAL)](#restrict-the-ssh-config-for-the-user-user-local).
-2. [Restrict the `SSH` config for the user `<user>` (REMOTE)](#restrict-the-ssh-config-for-the-user-user-remote).
+2. [Restrict the `sshd` config for the user `<user>` (REMOTE)](#restrict-the-sshd-config-for-the-user-user-remote).
 3. [Restart `sshd` (REMOTE)](#restart-sshd-remote).
 4. [Connect to the VM as the user `<user>` (LOCAL)](#connect-to-the-vm-as-the-user-user-local).
 5. [Verify that you can't connect to the VM as the user `root` (LOCAL)](#verify-that-you-cant-connect-to-the-vm-as-the-user-root-local).
@@ -518,7 +518,7 @@ Complete these steps:
 
 3. [Connect to the VM as the user `<user>` (LOCAL)](#connect-to-the-vm-as-the-user-user-local) to verify you can connect as the user `<user>` without a password.
 
-### Restrict the `SSH` config for the user `<user>` (REMOTE)
+### Restrict the `sshd` config for the user `<user>` (REMOTE)
 
 1. [Connect to the VM as the user `<user>` (LOCAL)](#connect-to-the-vm-as-the-user-user-local) if not yet connected.
 
