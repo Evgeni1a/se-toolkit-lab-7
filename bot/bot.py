@@ -14,7 +14,7 @@ from pathlib import Path
 # Add bot directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent))
 
-from handlers import (
+from handlers.commands import (
     handle_start,
     handle_help,
     handle_health,
