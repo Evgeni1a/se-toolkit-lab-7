@@ -13,4 +13,4 @@ def handle_labs() -> str:
         lab_list = "\n".join([f"• {lab.get('title', 'Unknown')}" for lab in labs])
         return f"Available labs:\n{lab_list}"
     except Exception as e:
-        return f"Error fetching labs: {e}"
+        return f"❌ Backend error: {e}. Check that the services are running."
