@@ -4,6 +4,23 @@ import os
 from typing import List, Dict, Any, Optional
 
 import httpx
+from dotenv import load_dotenv
+from pathlib import Path
+
+
+def _load_env():
+    """Load .env.bot.secret from bot directory or parent directory."""
+    # Try bot/.env.bot.secret first
+    env_path = Path(__file__).parent.parent / ".env.bot.secret"
+    if not env_path.exists():
+        # Try root/.env.bot.secret
+        env_path = Path(__file__).parent.parent.parent / ".env.bot.secret"
+    if env_path.exists():
+        load_dotenv(env_path)
+
+
+# Load environment variables on module import
+_load_env()
 
 
 class LMSClient:
