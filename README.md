@@ -91,3 +91,135 @@ By the end of this lab, you should be able to say:
 2. [Backend Integration](./lab/tasks/required/task-2.md) — P0: slash commands + real data
 3. [Intent-Based Natural Language Routing](./lab/tasks/required/task-3.md) — P1: LLM tool use
 4. [Containerize and Document](./lab/tasks/required/task-4.md) — P3: containerize + deploy
+
+## Deploy
+
+### Prerequisites
+
+Before deploying, ensure you have:
+
+1. **VM access** — SSH connection to your course VM
+2. **Telegram Bot Token** — Get from [@BotFather](https://t.me/BotFather)
+3. **Environment file** — `.env.docker.secret` with all required variables
+
+### Environment Variables
+
+Create `.env.docker.secret` in the project root with:
+
+```bash
+# Telegram
+BOT_TOKEN=your-telegram-bot-token
+
+# LMS Backend
+LMS_API_KEY=your-lms-api-key
+BACKEND_CONTAINER_PORT=8000
+BACKEND_HOST_ADDRESS=0.0.0.0
+BACKEND_HOST_PORT=42002
+BACKEND_NAME=lms-backend
+BACKEND_DEBUG=false
+BACKEND_CONTAINER_ADDRESS=0.0.0.0
+BACKEND_ENABLE_INTERACTIONS=true
+BACKEND_ENABLE_LEARNERS=true
+AUTOCHECKER_API_URL=https://autochecker.example.com
+AUTOCHECKER_API_LOGIN=your-login
+AUTOCHECKER_API_PASSWORD=your-password
+
+# Database
+POSTGRES_DB=lms
+POSTGRES_USER=lms
+POSTGRES_PASSWORD=your-db-password
+CONST_POSTGRESQL_SERVICE_NAME=postgres
+CONST_POSTGRESQL_DEFAULT_PORT=5432
+POSTGRES_HOST_ADDRESS=0.0.0.0
+POSTGRES_HOST_PORT=5432
+
+# PGAdmin
+PGADMIN_EMAIL=admin@example.com
+PGADMIN_PASSWORD=your-pgadmin-password
+PGADMIN_HOST_ADDRESS=0.0.0.0
+PGADMIN_HOST_PORT=8080
+
+# Caddy/Frontend
+CADDY_CONTAINER_PORT=80
+LMS_API_HOST_ADDRESS=0.0.0.0
+LMS_API_HOST_PORT=42002
+QWEN_CODE_API_URL=http://host.docker.internal:42005
+
+# LLM (optional, for natural language queries)
+LLM_API_KEY=your-llm-api-key
+LLM_API_BASE_URL=http://host.docker.internal:42005
+LLM_API_MODEL=qwen3-coder-plus
+```
+
+### Deploy Steps
+
+1. **SSH to your VM:**
+   ```bash
+   ssh admin@<vm-ip>
+   ```
+
+2. **Navigate to project directory:**
+   ```bash
+   cd ~/se-toolkit-lab-7
+   ```
+
+3. **Pull latest changes:**
+   ```bash
+   git pull
+   ```
+
+4. **Start all services:**
+   ```bash
+   docker compose --env-file .env.docker.secret up --build -d
+   ```
+
+5. **Check service status:**
+   ```bash
+   docker compose --env-file .env.docker.secret ps
+   ```
+
+   You should see:
+   - `backend` — Up
+   - `bot` — Up
+   - `caddy` — Up
+   - `postgres` — Up (healthy)
+   - `pgadmin` — Up
+
+6. **Check bot logs:**
+   ```bash
+   docker compose --env-file .env.docker.secret logs bot --tail 20
+   ```
+
+### Verify Deployment
+
+1. **Backend health:**
+   ```bash
+   curl -sf http://localhost:42002/docs
+   ```
+
+2. **Bot in Telegram:**
+   - Open your bot in Telegram
+   - Send `/start` — should receive welcome message
+   - Send `/health` — should show backend status
+   - Send `what labs are available?` — should list labs (if LLM configured)
+
+### Troubleshooting
+
+| Problem | Solution |
+|---------|----------|
+| Bot container restarting | Check logs: `docker compose logs bot` |
+| `/health` fails | Ensure `LMS_API_BASE_URL=http://backend:8000` |
+| LLM queries fail | Use `host.docker.internal` for `LLM_API_BASE_URL` |
+| Missing env vars | Check `.env.docker.secret` has all required values |
+
+### Stop Services
+
+```bash
+docker compose --env-file .env.docker.secret down
+```
+
+### Restart Bot Only
+
+```bash
+docker compose --env-file .env.docker.secret restart bot
+```
