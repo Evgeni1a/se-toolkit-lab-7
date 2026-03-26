@@ -1,15 +1,4 @@
-"""Command handlers for the LMS Telegram bot.
-
-Handlers are plain functions that take input and return text.
-They don't know about Telegram — same logic works from --test mode,
-unit tests, or the Telegram bot.
-"""
-
-import sys
-from pathlib import Path
-
-# Add bot directory to path for imports
-sys.path.insert(0, str(Path(__file__).parent.parent))
+"""Command handlers for the LMS Telegram bot."""
 
 from handlers.commands.start import handle_start
 from handlers.commands.help import handle_help
