@@ -4,6 +4,7 @@ Telegram bot entry point with --test mode for offline verification.
 
 Usage:
     python bot.py --test "/command"           # Test mode with slash command
+    python bot.py --test "query"              # Test mode with natural language
     python bot.py                             # Normal mode, connects to Telegram
 """
 
@@ -21,6 +22,7 @@ from handlers.commands import (
     handle_labs,
     handle_scores,
 )
+from handlers.intent_router import handle_natural_language
 
 
 def get_handler(command: str):
@@ -47,28 +49,34 @@ def run_test_mode(command: str) -> None:
     """Run handler in test mode and print response to stdout."""
     if is_command(command):
         handler = get_handler(command)
+
+        if handler is None:
+            print(f"Unknown command: {command}")
+            print("Available commands: /start, /help, /health, /labs, /scores")
+            sys.exit(0)
+
+        parts = command.split()
+        arg = parts[1] if len(parts) > 1 else None
+
+        try:
+            if arg:
+                response = handler(arg)
+            else:
+                response = handler()
+            print(response)
+            sys.exit(0)
+        except Exception as e:
+            print(f"Error executing command: {e}")
+            sys.exit(1)
     else:
-        print(f"Natural language queries coming in Task 3: '{command}'")
-        sys.exit(0)
-
-    if handler is None:
-        print(f"Unknown command: {command}")
-        print("Available commands: /start, /help, /health, /labs, /scores")
-        sys.exit(0)
-
-    parts = command.split()
-    arg = parts[1] if len(parts) > 1 else None
-
-    try:
-        if arg:
-            response = handler(arg)
-        else:
-            response = handler()
-        print(response)
-        sys.exit(0)
-    except Exception as e:
-        print(f"Error executing command: {e}")
-        sys.exit(1)
+        # Natural language query - use LLM intent router
+        try:
+            response = handle_natural_language(command)
+            print(response)
+            sys.exit(0)
+        except Exception as e:
+            print(f"Error processing query: {e}")
+            sys.exit(1)
 
 
 def run_telegram_mode() -> None:
@@ -77,6 +85,7 @@ def run_telegram_mode() -> None:
     print("Telegram integration coming in Task 2.")
     print("For now, use test mode:")
     print("  python bot.py --test \"/start\"")
+    print("  python bot.py --test \"what labs are available\"")
     sys.exit(0)
 
 

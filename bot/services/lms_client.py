@@ -103,3 +103,96 @@ class LMSClient:
             return {"healthy": False, "error": f"HTTP {e.response.status_code} {e.response.status_phrase}"}
         except Exception as e:
             return {"healthy": False, "error": str(e)}
+
+    def get_learners(self) -> List[Dict[str, Any]]:
+        """Fetch all learners from the LMS API."""
+        response = self.client.get(
+            f"{self.base_url}/learners/",
+            headers=self._headers()
+        )
+        response.raise_for_status()
+        return response.json()
+
+    def get_scores(self, lab: str) -> Optional[List[Dict[str, Any]]]:
+        """Fetch score distribution for a specific lab."""
+        try:
+            response = self.client.get(
+                f"{self.base_url}/analytics/scores",
+                params={"lab": lab},
+                headers=self._headers()
+            )
+            response.raise_for_status()
+            return response.json()
+        except httpx.HTTPStatusError as e:
+            if e.response.status_code == 404:
+                return None
+            raise
+
+    def get_timeline(self, lab: str) -> Optional[List[Dict[str, Any]]]:
+        """Fetch submission timeline for a specific lab."""
+        try:
+            response = self.client.get(
+                f"{self.base_url}/analytics/timeline",
+                params={"lab": lab},
+                headers=self._headers()
+            )
+            response.raise_for_status()
+            return response.json()
+        except httpx.HTTPStatusError as e:
+            if e.response.status_code == 404:
+                return None
+            raise
+
+    def get_groups(self, lab: str) -> Optional[List[Dict[str, Any]]]:
+        """Fetch per-group performance for a specific lab."""
+        try:
+            response = self.client.get(
+                f"{self.base_url}/analytics/groups",
+                params={"lab": lab},
+                headers=self._headers()
+            )
+            response.raise_for_status()
+            return response.json()
+        except httpx.HTTPStatusError as e:
+            if e.response.status_code == 404:
+                return None
+            raise
+
+    def get_top_learners(self, lab: str, limit: int = 5) -> Optional[List[Dict[str, Any]]]:
+        """Fetch top learners for a specific lab."""
+        try:
+            response = self.client.get(
+                f"{self.base_url}/analytics/top-learners",
+                params={"lab": lab, "limit": limit},
+                headers=self._headers()
+            )
+            response.raise_for_status()
+            return response.json()
+        except httpx.HTTPStatusError as e:
+            if e.response.status_code == 404:
+                return None
+            raise
+
+    def get_completion_rate(self, lab: str) -> Optional[Dict[str, Any]]:
+        """Fetch completion rate for a specific lab."""
+        try:
+            response = self.client.get(
+                f"{self.base_url}/analytics/completion-rate",
+                params={"lab": lab},
+                headers=self._headers()
+            )
+            response.raise_for_status()
+            return response.json()
+        except httpx.HTTPStatusError as e:
+            if e.response.status_code == 404:
+                return None
+            raise
+
+    def trigger_sync(self) -> Dict[str, Any]:
+        """Trigger ETL sync to refresh data from autochecker API."""
+        response = self.client.post(
+            f"{self.base_url}/pipeline/sync",
+            headers=self._headers()
+        )
+        response.raise_for_status()
+        return response.json()
