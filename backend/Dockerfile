@@ -26,12 +26,11 @@ RUN --mount=type=cache,target=/root/.cache/uv \
     --mount=type=bind,source=bot/pyproject.toml,target=bot/pyproject.toml \
     uv sync --locked --no-install-project
 
-# Копируем весь проект
-COPY . /app
+COPY backend /app/backend
+COPY pyproject.toml uv.lock /app/
 
-# Устанавливаем проект (без --reinstall, используем --locked)
 RUN --mount=type=cache,target=/root/.cache/uv \
-    uv sync --locked
+    uv sync --reinstall
 
 # ---
 # Stage 2: use a final image without uv
